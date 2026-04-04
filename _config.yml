@@ -9,7 +9,7 @@ last_name: Choi
 contact_note: >
   
 description: > # the ">" symbol means to ignore newlines until "footer_text:"
-  개발자 최지원의 포트폴리오입니다.
+  백엔드 개발자 최지원의 포트폴리오입니다. | Java/Spring web backend
 footer_text: >
 keywords: developer, backend, portfolio # add your own keywords or leave empty
 lang: kr # the language of your site (for example: en, fr, cn, ru, etc.)
@@ -88,8 +88,8 @@ bing_site_verification: # out your bing-site-verification ID (Bing Webmaster)
 # Blog
 # -----------------------------------------------------------------------------
 
-blog_name: al-folio # blog_name will be displayed in your blog page
-blog_description: a simple whitespace theme for academics
+blog_name: ""
+blog_description: ""
 permalink: /blog/:year/:title/
 lsi: false # produce an index for related posts
 
@@ -303,10 +303,10 @@ scholar:
 # Display different badges withs stats for your publications
 # Customize badge behavior in _layouts/bib.liquid
 enable_publication_badges:
-  altmetric: true # Altmetric badge (Customization options: https://badge-docs.altmetric.com/index.html)
-  dimensions: true # Dimensions badge (Customization options: https://badge.dimensions.ai/)
-  google_scholar: true # Google Scholar badge (https://scholar.google.com/intl/en/scholar/citations.html)
-  inspirehep: true # Inspire HEP badge (https://help.inspirehep.net/knowledge-base/citation-metrics/)
+  altmetric: false # Altmetric badge (Customization options: https://badge-docs.altmetric.com/index.html)
+  dimensions: false # Dimensions badge (Customization options: https://badge.dimensions.ai/)
+  google_scholar: false # Google Scholar badge (https://scholar.google.com/intl/en/scholar/citations.html)
+  inspirehep: flase # Inspire HEP badge (https://help.inspirehep.net/knowledge-base/citation-metrics/)
 
 # Filter out certain bibtex entry keywords used internally from the bib output
 filtered_bibtex_keywords:

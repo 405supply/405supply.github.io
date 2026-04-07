@@ -70,7 +70,7 @@ latest_posts:
 </div>
 
 ---
-<h3 style="font-size: 1.3rem; font-weight: 700; margin-bottom: 1rem;">🛠 Tech Stack</h3>
+<h3 style="font-size: 1.3rem; font-weight: 700; margin-bottom: 1rem;">Tech Stack</h3>
 
 <div style="display: flex; flex-direction: column; gap: 1rem; margin-bottom: 2rem;">
 
@@ -119,7 +119,6 @@ latest_posts:
 ---
 <h3 style="font-size: 1.3rem; font-weight: 700; margin-bottom: 1rem;">Projects</h3>
 추가 예정
-
 
 ---
 

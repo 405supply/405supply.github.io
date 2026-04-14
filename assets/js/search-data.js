@@ -10,8 +10,8 @@ ninja.data = [{
       window.location.href = "/";
     },
   },{id: "nav-projects",
-          title: "projects",
-          description: "A growing collection of your cool projects.",
+          title: "Projects",
+          description: "개발하며 경험을 쌓아온 프로젝트 모음입니다.",
           section: "Navigation",
           handler: () => {
             window.location.href = "/projects/";

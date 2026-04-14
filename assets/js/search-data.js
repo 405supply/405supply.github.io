@@ -43,6 +43,16 @@ ninja.data = [{
           description: "",
           section: "Books",handler: () => {
               window.location.href = "/books/the_godfather/";
+            },},{id: "projects-golden-harvest",
+          title: 'Golden Harvest',
+          description: "농수산물 유통 플랫폼의 재고 관리 서비스",
+          section: "Projects",handler: () => {
+              window.location.href = "/projects/golden-harvest/";
+            },},{id: "projects-marine-log",
+          title: 'Marine Log',
+          description: "해양 정화 활동 기록 및 통계 플랫폼",
+          section: "Projects",handler: () => {
+              window.location.href = "/projects/marine-log/";
             },},{id: "teachings-data-science-fundamentals",
           title: 'Data Science Fundamentals',
           description: "This course covers the foundational aspects of data science, including data collection, cleaning, analysis, and visualization. Students will learn practical skills for working with real-world datasets.",

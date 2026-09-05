@@ -45,12 +45,12 @@ ninja.data = [{
               window.location.href = "/books/the_godfather/";
             },},{id: "projects-golden-harvest",
           title: 'Golden Harvest',
-          description: "농수산물 유통 플랫폼의 재고 관리 서비스",
+          description: "농산물 유통 플랫폼의 재고 관리 서비스",
           section: "Projects",handler: () => {
               window.location.href = "/projects/golden-harvest/";
             },},{id: "projects-marine-log",
           title: 'Marine Log',
-          description: "해양 정화 활동 기록 및 통계 플랫폼",
+          description: "해안 정화 활동 기록 및 통계 플랫폼",
           section: "Projects",handler: () => {
               window.location.href = "/projects/marine-log/";
             },},{id: "teachings-data-science-fundamentals",

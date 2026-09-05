@@ -60,7 +60,7 @@ latest_posts:
     <div style="font-size: 0.85rem; color: gray; margin: 0.3rem 0;">수료</div>
     <p style="font-size: 0.95rem; line-height: 1.7; margin-top: 0.5rem;">
       보다 폭넓고 전문적인 실무 경험을 위해 부트캠프를 수료하였습니다.<br>
-      총 3번의 팀 프로젝트를 수행하며 깊이 있는 협업을 경험하고 성장할 수 있었습니다.
+      팀 프로젝트를 수행하며 깊이 있는 협업을 경험하고 성장할 수 있었습니다.
     </p>
   </div>
 
@@ -81,9 +81,16 @@ latest_posts:
   <div>
     <span style="font-weight: 600; font-size: 0.9rem; color: gray;">Database & ORM</span><br>
     <img src="https://img.shields.io/badge/MySQL-4479A1?style=flat-square&logo=mysql&logoColor=white"/>
+    <img src="https://img.shields.io/badge/PostgreSQL-4169E1?style=flat-square&logo=postgresql&logoColor=white"/>
+    <img src="https://img.shields.io/badge/PostGIS-4169E1?style=flat-square&logo=postgresql&logoColor=white"/>
     <img src="https://img.shields.io/badge/Redis-FF4438?style=flat-square&logo=redis&logoColor=white"/>
     <img src="https://img.shields.io/badge/JPA-59666C?style=flat-square&logo=hibernate&logoColor=white"/>
     <img src="https://img.shields.io/badge/MyBatis-000000?style=flat-square"/>
+  </div>
+
+  <div>
+    <span style="font-weight: 600; font-size: 0.9rem; color: gray;">Messaging</span><br>
+    <img src="https://img.shields.io/badge/Apache Kafka-231F20?style=flat-square&logo=apachekafka&logoColor=white"/>
   </div>
 
   <div>
@@ -92,7 +99,6 @@ latest_posts:
     <img src="https://img.shields.io/badge/Kubernetes-326CE5?style=flat-square&logo=kubernetes&logoColor=white"/>
     <img src="https://img.shields.io/badge/AWS-232F3E?style=flat-square&logo=amazonwebservices&logoColor=white"/>
     <img src="https://img.shields.io/badge/GitHub Actions-2088FF?style=flat-square&logo=githubactions&logoColor=white"/>
-    <img src="https://img.shields.io/badge/Apache Kafka-231F20?style=flat-square&logo=apachekafka&logoColor=white"/>
   </div>
 
   <div>
@@ -109,13 +115,36 @@ latest_posts:
   </div>
 </div>
 
-
-    
-
-
 ---
 <h3 style="font-size: 1.3rem; font-weight: 700; margin-bottom: 1rem;">Projects</h3>
-추가 예정
+
+<div style="display: flex; flex-direction: column; gap: 1.5rem; margin-bottom: 2rem;">
+
+  <div style="border-left: 3px solid #6DB33F; padding-left: 1rem;">
+    <div style="display: flex; justify-content: space-between; align-items: center;">
+      <a href="{{ site.baseurl }}/projects/golden-harvest/" style="font-weight: 700; font-size: 1rem; text-decoration: none; color: inherit;">Golden Harvest</a>
+      <span style="font-size: 0.85rem; color: gray;">2025.12 ~ 2026.02</span>
+    </div>
+    <p style="font-size: 0.95rem; line-height: 1.7; margin-top: 0.5rem;">
+      농산물 유통 MSA 재고관리 서비스 · Java · Spring Boot · Kafka · MyBatis
+    </p>
+  </div>
+
+  <div style="border-left: 3px solid #6DB33F; padding-left: 1rem;">
+    <div style="display: flex; justify-content: space-between; align-items: center;">
+      <a href="{{ site.baseurl }}/projects/marine-log/" style="font-weight: 700; font-size: 1rem; text-decoration: none; color: inherit;">Marine Log</a>
+      <span style="font-size: 0.85rem; color: gray;">2025.09 ~ 2025.12</span>
+    </div>
+    <p style="font-size: 0.95rem; line-height: 1.7; margin-top: 0.5rem;">
+      해안 정화 활동 관리 플랫폼 · Java · Spring Boot · PostGIS
+    </p>
+  </div>
+
+</div>
+
+<p style="text-align: right; font-size: 0.9rem;">
+  <a href="{{ site.baseurl }}/projects/">전체 프로젝트 보기 →</a>
+</p>
 
 ---
 
@@ -138,13 +167,6 @@ latest_posts:
     <div style="font-size: 0.85rem; color: gray; margin-top: 0.2rem;">AL 등급</div>
   </div>
 
-  <div style="border-left: 3px solid #ddd; padding-left: 1rem;">
-    <div style="display: flex; justify-content: space-between; align-items: center;">
-      <span style="font-weight: 700; font-size: 0.95rem; color: gray;">정보처리기사</span>
-      <span style="font-size: 0.85rem; color: gray;">준비중</span>
-    </div>
-  </div>
-
 </div>
 
 ---
@@ -156,7 +178,7 @@ latest_posts:
     <div style="display: flex; align-items: center; gap: 0.5rem;">
       <span style="font-weight: 700; font-size: 0.95rem;">Email</span>
     </div>
-    <a href="mailto:405supplychoi@gmail.com" 
+    <a href="mailto:405supplychoi@gmail.com"
        style="font-size: 0.95rem; color: gray; text-decoration: none;">
       405supplychoi@gmail.com
     </a>
@@ -166,7 +188,7 @@ latest_posts:
     <div style="display: flex; align-items: center; gap: 0.5rem;">
       <span style="font-weight: 700; font-size: 0.95rem;">Phone</span>
     </div>
-    <a href="mailto:405supplychoi@gmail.com" 
+    <a href="mailto:405supplychoi@gmail.com"
        style="font-size: 0.95rem; color: gray; text-decoration: none;">
       010-5684-9971
     </a>
@@ -176,7 +198,7 @@ latest_posts:
     <div style="display: flex; align-items: center; gap: 0.5rem;">
       <span style="font-weight: 700; font-size: 0.95rem;">GitHub</span>
     </div>
-    <a href="https://github.com/405supply" 
+    <a href="https://github.com/405supply"
        target="_blank"
        style="font-size: 0.95rem; color: gray; text-decoration: none;">
       github.com/405supply

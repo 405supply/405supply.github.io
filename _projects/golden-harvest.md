@@ -1,7 +1,7 @@
 ---
 layout: page
 title: Golden Harvest
-description: 농수산물 유통 플랫폼의 재고 관리 서비스
+description: 농산물 유통 플랫폼의 재고 관리 서비스
 img: # 나중에 추가
 importance: 1
 category: Team Project
@@ -16,6 +16,7 @@ github: https://github.com/Gold-Team-Project/golden-harvest-integrated
   <img src="https://img.shields.io/badge/MyBatis-000000?style=flat-square"/>
   <img src="https://img.shields.io/badge/Redis-FF4438?style=flat-square&logo=redis&logoColor=white"/>
   <img src="https://img.shields.io/badge/Docker-2496ED?style=flat-square&logo=docker&logoColor=white"/>
+  <img src="https://img.shields.io/badge/AWS-232F3E?style=flat-square&logo=amazonwebservices&logoColor=white"/>
 </div>
 
 ---
@@ -26,22 +27,43 @@ github: https://github.com/Gold-Team-Project/golden-harvest-integrated
   <tbody>
     <tr style="border-bottom: 1px solid #eee;">
       <td style="padding: 8px; font-weight: 600; width: 120px;">기간</td>
-      <td style="padding: 8px;">2025.08 ~ 2026.02</td>
+      <td style="padding: 8px;">2025.12 ~ 2026.02 (9주)</td>
+    </tr>
+    <tr style="border-bottom: 1px solid #eee;">
+      <td style="padding: 8px; font-weight: 600;">유형</td>
+      <td style="padding: 8px;">한화시스템 Beyond SW Camp 최종 프로젝트</td>
     </tr>
     <tr style="border-bottom: 1px solid #eee;">
       <td style="padding: 8px; font-weight: 600;">팀 구성</td>
-      <td style="padding: 8px;">5인 팀 프로젝트 (재고 도메인 전담)</td>
+      <td style="padding: 8px;">5인 (백엔드 3명, 프론트엔드 1명, 팀장/PM 1명) — 재고 도메인 전담</td>
+    </tr>
+    <tr style="border-bottom: 1px solid #eee;">
+      <td style="padding: 8px; font-weight: 600;">배포</td>
+      <td style="padding: 8px;">AWS ECS</td>
     </tr>
     <tr style="border-bottom: 1px solid #eee;">
       <td style="padding: 8px; font-weight: 600;">GitHub</td>
       <td style="padding: 8px;">
-        <a href="https://github.com/Gold-Team-Project/golden-harvest-integrated" target="_blank">
-          바로가기
-        </a>
+        <a href="https://github.com/Gold-Team-Project/golden-harvest-integrated" target="_blank">통합 리포지토리</a>
+        &nbsp;·&nbsp;
+        <a href="https://github.com/Gold-Team-Project/golden-harvest-inventory" target="_blank">담당 서비스(재고)</a>
       </td>
     </tr>
   </tbody>
 </table>
+
+---
+
+<h3 style="font-size: 1.2rem; font-weight: 700; margin-bottom: 1rem;">🌾 서비스 소개</h3>
+
+<p style="font-size: 0.95rem; line-height: 1.8; margin-bottom: 2rem;">
+  상품·구매주문·판매주문·재고 등 여러 서비스로 구성된 MSA 환경에서 <b>재고(Inventory) 서비스</b>를 담당했습니다.<br>
+  농산물 특성상 중요한 선입선출(FIFO) 소진, 서비스 간 이벤트 기반 데이터 정합성, 동시 주문 상황에서의 재고 초과 판매 방지를 핵심 과제로 설계·구현했습니다.
+</p>
+
+<p style="font-size: 0.9rem; line-height: 1.8; margin-bottom: 2rem; color: gray;">
+  <b>담당 역할</b>: 재고 서비스 Command/Query 아키텍처 전체 설계 · Kafka Consumer/Producer 및 이벤트 기반 입고 처리 파이프라인 · Lot 기반 FIFO 출고 로직 및 동시성 제어 · 폐기(Discard) 도메인 및 통계 API · Bloom Filter 기반 중복 처리 방지
+</p>
 
 ---
 
@@ -50,38 +72,53 @@ github: https://github.com/Gold-Team-Project/golden-harvest-integrated
 <div style="display: flex; flex-direction: column; gap: 1rem; margin-bottom: 2rem;">
 
   <div style="border-left: 3px solid #6DB33F; padding-left: 1rem;">
+    <span style="font-weight: 700;">MSA 이벤트 기반 통신 & Event Carried State Transfer</span>
+    <p style="font-size: 0.95rem; line-height: 1.7; margin-top: 0.3rem;">
+      상품 서비스 소유 데이터(상품명, 원가 등)를 매 조회마다 동기 호출하는 대신, 변경 이벤트를 구독해 로컬 DB에 미러링하는 구조를 설계했습니다.
+      상품 서비스 장애가 재고 서비스로 전파되지 않도록 결합도를 낮추고, 조회는 전부 로컬 DB로 처리해 응답 성능을 확보했습니다.
+    </p>
+  </div>
+
+  <div style="border-left: 3px solid #6DB33F; padding-left: 1rem;">
     <span style="font-weight: 700;">CQRS 패턴 적용</span>
     <p style="font-size: 0.95rem; line-height: 1.7; margin-top: 0.3rem;">
-      쓰기는 JPA, 읽기는 MyBatis로 분리하여 각 목적에 맞는 기술을 선택했습니다.
+      쓰기는 JPA 엔티티에 도메인 규칙(재고 차감 시 상태 자동 전이 등)을 캡슐화하고, 조회는 MyBatis로 마진율 적용 판매가 계산·다중 조인·동적 필터링 등 복잡한 집계 쿼리를 직접 최적화했습니다.
     </p>
   </div>
 
   <div style="border-left: 3px solid #6DB33F; padding-left: 1rem;">
-    <span style="font-weight: 700;">이벤트 기반 비동기 처리</span>
+    <span style="font-weight: 700;">Kafka 멱등성 처리 — Bloom Filter + DB 이중 방어</span>
     <p style="font-size: 0.95rem; line-height: 1.7; margin-top: 0.3rem;">
-      Kafka Consumer → Spring ApplicationEvent → EventListener 구조로
-      서비스 간 결합도를 낮추고 보상 트랜잭션을 구현했습니다.
+      Kafka의 At-Least-Once 전달 특성으로 인한 이벤트 중복 수신 문제에 대응해, Bloom Filter로 대부분의 트래픽을 저비용 1차 필터링하고 의심 케이스만 DB 유니크 조회로 재확인하는 2단계 멱등성 전략을 구현했습니다.
     </p>
   </div>
 
   <div style="border-left: 3px solid #6DB33F; padding-left: 1rem;">
-    <span style="font-weight: 700;">동시성 제어</span>
+    <span style="font-weight: 700;">실패 처리 전략 — 재시도/보상 이벤트 분기</span>
     <p style="font-size: 0.95rem; line-height: 1.7; margin-top: 0.3rem;">
-      재고 차감 시 비관적 락, 상태 변경 시 낙관적 락을 상황에 맞게 구분 적용했습니다.
+      Kafka Consumer 처리 실패 시 예외를 재시도 가능/불가능으로 분류해, 일시적 오류는 Kafka 재시도에 위임하고 영구적 오류는 즉시 보상 이벤트를 발행 후 트랜잭션을 롤백하는 구조로, 2PC 없이 서비스 간 데이터 정합성을 유지했습니다.
     </p>
   </div>
 
   <div style="border-left: 3px solid #6DB33F; padding-left: 1rem;">
-    <span style="font-weight: 700;">멱등성 보장</span>
+    <span style="font-weight: 700;">동시성 제어 — 비관적/낙관적 락 차등 적용</span>
     <p style="font-size: 0.95rem; line-height: 1.7; margin-top: 0.3rem;">
-      Bloom Filter 1차 필터링 + DB 2차 검증으로 Kafka 중복 메시지를 방어했습니다.
+      재고 소진처럼 쓰기 경합이 잦은 조회에는 <code>PESSIMISTIC_WRITE</code> 락을 적용해 동시 접근을 원천 차단하고, 개별 폐기 처리처럼 충돌 빈도가 낮은 단건 작업에는 <code>@Version</code> 기반 낙관적 락을 적용했습니다.
+      인기 상품에 동시 주문이 몰려도 재고 초과 판매(Overselling)가 발생하지 않도록, 트래픽 경합 특성에 따라 락 전략을 차등 설계했습니다.
     </p>
   </div>
 
   <div style="border-left: 3px solid #6DB33F; padding-left: 1rem;">
-    <span style="font-weight: 700;">FIFO 재고 소진 로직</span>
+    <span style="font-weight: 700;">FIFO 기반 재고 소진</span>
     <p style="font-size: 0.95rem; line-height: 1.7; margin-top: 0.3rem;">
-      농수산물 특성을 반영해 입고일 기준 오래된 재고부터 순차 소진하는 로직을 구현했습니다.
+      입고일 기준 오름차순으로 Lot을 조회해 오래된 재고부터 소진하고, 한 Lot으로 부족하면 여러 Lot에 걸쳐 자동 분할 소진하며 각 소진 단위마다 출고 이력을 생성해 재고 흐름을 완전히 추적할 수 있도록 구현했습니다.
+    </p>
+  </div>
+
+  <div style="border-left: 3px solid #6DB33F; padding-left: 1rem;">
+    <span style="font-weight: 700;">관리자용 통계 API</span>
+    <p style="font-size: 0.95rem; line-height: 1.7; margin-top: 0.3rem;">
+      전월 대비 폐기량, 상품별 폐기율, 폐기 손실 금액 등을 SQL 집계 쿼리로 직접 설계해, 재고 손실을 정량적으로 모니터링할 수 있는 API를 제공했습니다.
     </p>
   </div>
 
@@ -93,10 +130,10 @@ github: https://github.com/Gold-Team-Project/golden-harvest-integrated
 
 <table style="width: 100%; border-collapse: collapse; margin-bottom: 2rem;">
   <thead>
-    <tr style="border-bottom: 2px solid #ddd;">
-      <th style="text-align: left; padding: 8px;">결정 사항</th>
-      <th style="text-align: left; padding: 8px;">선택</th>
-      <th style="text-align: left; padding: 8px;">이유</th>
+    <tr style="border-bottom: 2px solid #333;">
+      <th style="padding: 8px; text-align: left;">결정 사항</th>
+      <th style="padding: 8px; text-align: left;">선택</th>
+      <th style="padding: 8px; text-align: left;">이유</th>
     </tr>
   </thead>
   <tbody>
@@ -122,3 +159,49 @@ github: https://github.com/Gold-Team-Project/golden-harvest-integrated
     </tr>
   </tbody>
 </table>
+
+---
+
+<h3 style="font-size: 1.2rem; font-weight: 700; margin-bottom: 1rem;">🔧 트러블슈팅</h3>
+
+<div style="display: flex; flex-direction: column; gap: 1rem; margin-bottom: 2rem;">
+
+  <div style="border-left: 3px solid #E67E22; padding-left: 1rem;">
+    <span style="font-weight: 700;">Kafka 메시지 중복 소비로 인한 재고 이중 입고</span>
+    <p style="font-size: 0.95rem; line-height: 1.7; margin-top: 0.3rem;">
+      동일한 이벤트가 재처리되어 같은 구매 건에 대해 Lot이 중복 생성되는 현상이 발생했습니다.
+      Kafka Consumer의 재시도 과정에서 커밋되지 않은 오프셋이 재전달되는 At-Least-Once 특성이 원인이었고,
+      Bloom Filter로 1차 필터링 후 의심 케이스만 <code>purchaseOrderItemId</code> 유니크 검증으로 2차 확인하는
+      순차적 이중 방어 구조를 채택해 중복 이벤트로 인한 재고 정합성 오류를 방지했습니다.
+    </p>
+  </div>
+
+  <div style="border-left: 3px solid #E67E22; padding-left: 1rem;">
+    <span style="font-weight: 700;">LOT 재고 조회 시 처리되지 않은 예외 발생</span>
+    <p style="font-size: 0.95rem; line-height: 1.7; margin-top: 0.3rem;">
+      특정 상황에서 재고 상세 조회가 <code>NoSuchElementException</code>을 던지는 현상을 발견했습니다.
+      <code>findByLotNo</code>의 반환 처리 미흡으로 <code>DiscardService</code>에서 빈 리스트에 <code>getFirst()</code>를
+      호출하는 버그였고, 빈 리스트를 선행 확인하는 방어 로직을 추가해 해결했습니다.
+      눈으로 보기에 문제없어 보이는 코드도 언제든 버그를 낼 수 있다는 경각심을 얻은 경험이었습니다.
+    </p>
+  </div>
+
+</div>
+
+---
+
+<h3 style="font-size: 1.2rem; font-weight: 700; margin-bottom: 1rem;">💭 회고</h3>
+
+<p style="font-size: 0.95rem; line-height: 1.8; margin-bottom: 1rem;">
+  MSA 환경에서 데이터의 주인을 정의하는 것과 각 서비스 사이의 영역을 구분짓는 것에 대한 중요성을 체감했습니다.
+  Kafka 기반 이벤트 통신에서 멱등성·순서 보장·실패 처리를 고려하지 않으면 데이터 정합성 문제로 바로 이어지므로
+  고려해야 할 사항이 많음을 느꼈고, 동시성 문제는 이론과 실제로 락 전략을 선택하고 근거를 설명하는 것 사이에
+  큰 차이가 있음을 경험했습니다.
+</p>
+
+<p style="font-size: 0.95rem; line-height: 1.8; margin-bottom: 2rem;">
+  모놀리식이나 모듈러 모놀리스 구조도 고려할 수 있었지만, 더 깊은 기술적 과제를 경험하기 위해 의도적으로 MSA를
+  선택했습니다. 여러 마이크로서비스로 쪼개는 것이 생각보다 훨씬 높은 난이도와 고려 사항을 요구했기에 팀 전체가
+  더 많은 시간과 노력을 들여야 했지만, 그만큼 심도 있는 기술적 고민과 정교한 구조 설계를 직접 경험할 수 있어
+  뜻깊은 프로젝트였습니다.
+</p>
